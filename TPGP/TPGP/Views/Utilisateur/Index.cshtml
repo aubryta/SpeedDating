@@ -1,0 +1,108 @@
+﻿@model TPGP.Models.UtilisateursInformations
+
+@{
+    ViewBag.Title = "Mon profil";
+}
+
+
+@if(Model.Prenom.Equals(""))
+{ 
+    
+    //*****************************************************************
+    // Si l'utilisateur n'a pas remplis ses informations 
+    //*****************************************************************
+    if (User.Identity.Name.Equals(Model.Id))
+    {
+        <h2>Mon profil</h2>
+        <!--C'est l'utilisateur connectéé-->
+        <h4>Vous n'avez pas encore saisis vos informations</h4>
+        <br />
+        @Html.ActionLink("Modifier mon profil", "Create", new { id = Model.Id })
+    }
+    else
+    {
+        <h2>Le profil de @Model.Id</h2>
+        <!--Ce n'est pas l'utilisateur connecté-->
+        <h4>Cet utilisateur n'a pas encore partagé ses informations</h4>
+    }
+}
+else
+{ 
+    
+    //*****************************************************************
+    // Si l'utilisateur a remplis ses informations 
+    //*****************************************************************
+
+    <dl class="dl-horizontal">
+        <dt> 
+            @Html.DisplayNameFor(model => model.Prenom)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Prenom)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Nom)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Nom)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Ville)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Ville)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Mail)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Mail)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Descriptif)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Descriptif)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Age)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Age)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Sexe)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Sexe)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.InteressePar)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.InteressePar)
+        </dd>
+
+    </dl>
+
+    <p>
+        @if (Model.Id.Equals(User.Identity.Name)) { 
+            @Html.ActionLink("Modifier mon profil", "Edit", new { id = Model.Id }) 
+        }
+    </p>
+}

@@ -1,0 +1,14 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="ParticipeModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="Participe">
+    <Key>
+      <PropertyRef Name="IdEvt" />
+      <PropertyRef Name="IdUser" />
+    </Key>
+    <Property Name="IdEvt" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="IdUser" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+  </EntityType>
+  <EntityContainer Name="participeEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="Participe" EntityType="Self.Participe" />
+  </EntityContainer>
+</Schema>

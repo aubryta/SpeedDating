@@ -1,0 +1,135 @@
+﻿
+<script src="https://maps.googleapis.com/maps/api/js?v=3.exp&libraries=places"></script>
+
+
+@model TPGP.Models.Evenements
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Evenements</h4>
+	<hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Nom)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Nom)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Adresse)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Adresse)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Ville)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Ville)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CodePostale)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CodePostale)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Date)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Date)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Descriptif)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Descriptif)
+        </dd>
+
+        <dt>
+            @Html.DisplayName("Créateur")
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Createur)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Liste des participants", "Details", "Participe", new { id = Model.Id }, null)
+    <br/>
+    @Html.ActionLink("Retour", "Index", new { id = Model.Id })
+
+    @if (User.Identity.Name.Equals(Model.Createur))
+    {
+        @Html.Encode(" | ")
+        @Html.ActionLink("Modifier", "Edit", new { id = Model.Id })
+        @Html.Encode(" | ")
+        @Html.ActionLink("Supprimer", "Delete", new { id = Model.Id })
+    }
+    <br/>
+    <br/>
+</p>
+<style type="text/css">
+    #map_canvas {
+        width: 50%;
+        height: 35%;
+    }
+</style>
+
+<script type="text/javascript">
+    var geocoder;
+    var map;
+    // initialisation de la carte Google Map de départ
+    function initialiserCarte() {
+        var adresse = "@Model.Adresse" + " @Model.CodePostale" + " @Model.Ville";
+        geocoder = new google.maps.Geocoder();
+        geocoder.geocode({ 'address': adresse }, function (results, status) {
+            if (status == google.maps.GeocoderStatus.OK) {
+                map.setCenter(results[0].geometry.location);
+                // Création du marqueur du lieu 
+                var marker = new google.maps.Marker({
+                    map: map,
+                    position: results[0].geometry.location
+                });
+            } else {
+                alert('Adresse introuvable: ' + status);
+            }
+        });
+        var mapOptions = {
+            zoom      : 14,
+            mapTypeId : google.maps.MapTypeId.ROADMAP
+        }
+        // map-canvas est le conteneur HTML de la carte Google Map
+        map = new google.maps.Map(document.getElementById('map-canvas'), mapOptions);
+    }
+ 
+    function TrouverAdresse() {
+        // Récupération de l'adresse tapée dans le formulaire
+        
+        
+    }
+    // Lancement de la construction de la carte google map
+    google.maps.event.addDomListener(window, 'load', initialiserCarte);
+    
+</script>
+
+<span id="text_latlng"></span>
+<div id="map-canvas" style="height:300px;width:45%"></div>

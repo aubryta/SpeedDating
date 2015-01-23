@@ -1,0 +1,25 @@
+﻿@model TPGP.Models.Participe
+
+@{
+    ViewBag.Title = "Désinscription";
+}
+
+<h2>Delete</h2>
+
+<h3>Êtes-vous sur de vouloir vous désinscrire ?</h3>
+<div>
+    <hr />
+    <dl class="dl-horizontal">
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Confirmer" class="btn btn-default" />
+            <br/>
+            <br/>
+            @Html.ActionLink("Retour", "Détails", new { id = Model.IdEvt })
+        </div>
+    }
+</div>

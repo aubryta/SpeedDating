@@ -1,0 +1,20 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="InfosModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="UtilisateursInformations">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="nvarchar" MaxLength="128" Nullable="false" />
+    <Property Name="Prenom" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Nom" Type="nvarchar(max)" />
+    <Property Name="Ville" Type="nvarchar(max)" />
+    <Property Name="Mail" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Descriptif" Type="text" />
+    <Property Name="Age" Type="int" Nullable="false" />
+    <Property Name="Sexe" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="InteressePar" Type="nvarchar" MaxLength="50" Nullable="false" />
+  </EntityType>
+  <EntityContainer Name="InfosModelStoreContainer">
+    <EntitySet Name="UtilisateursInformations" EntityType="Self.UtilisateursInformations" Schema="dbo" store:Type="Tables" />
+  </EntityContainer>
+</Schema>

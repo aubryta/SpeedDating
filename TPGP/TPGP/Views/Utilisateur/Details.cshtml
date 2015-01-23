@@ -1,0 +1,87 @@
+﻿@model TPGP.Models.UtilisateursInformations
+
+@{
+    ViewBag.Title = "Informations";
+}
+
+<h2>Informations de @Model.Id</h2>
+
+<div>
+	<hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayName("Prénom")
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Prenom)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Nom)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Nom)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Ville)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Ville)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Mail)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Mail)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Descriptif)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Descriptif)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Age)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Age)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Sexe)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Sexe)
+        </dd>
+
+        <dt>
+            @Html.DisplayName("Intéressé par")
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.InteressePar)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @if(User.Identity.Name.Equals(Model.Id))
+    {
+        @Html.ActionLink("Modifier mon profil", "Edit", new { id = Model.Id })
+    }
+    else
+    {
+        @Html.ActionLink("Envoyer un message", "Create","Messagerie", new { id = Model.Id }, null)
+    }
+</p>

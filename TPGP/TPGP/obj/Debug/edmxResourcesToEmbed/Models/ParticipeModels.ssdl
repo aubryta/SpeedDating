@@ -1,0 +1,14 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="ParticipeModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="Participe">
+    <Key>
+      <PropertyRef Name="IdEvt" />
+      <PropertyRef Name="IdUser" />
+    </Key>
+    <Property Name="IdEvt" Type="nvarchar" MaxLength="128" Nullable="false" />
+    <Property Name="IdUser" Type="nvarchar" MaxLength="128" Nullable="false" />
+  </EntityType>
+  <EntityContainer Name="ParticipeModelStoreContainer">
+    <EntitySet Name="Participe" EntityType="Self.Participe" Schema="dbo" store:Type="Tables" />
+  </EntityContainer>
+</Schema>

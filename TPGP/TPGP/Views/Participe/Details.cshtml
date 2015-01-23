@@ -1,0 +1,53 @@
+﻿@model IEnumerable<TPGP.Models.UtilisateursInformations>
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayName("Prénom")
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Age)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Sexe)
+        </th>
+        <th>
+            @Html.DisplayName("Intéressé par")
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Prenom)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Age)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Sexe)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.InteressePar)
+            </td>
+            <td>
+                @if(item.Id.Equals(User.Identity.Name))
+                {
+                    @Html.ActionLink("Se désinscrire", "Delete", new { id = ViewContext.RouteData.Values["id"]})
+                } 
+            </td>
+        </tr>
+    }
+</table>
+    <p>
+        @Html.ActionLink("Edit", "Edit", new { /* id = Model.PrimaryKey */ }) |
+        @Html.ActionLink("Back to List", "Index")
+    </p>
